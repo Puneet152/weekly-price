@@ -64,7 +64,7 @@ if st.button("predict"):
    prediction.reset_index(level=0, inplace=True)# converting index to column
    from datetime import datetime,date
    prediction = prediction.rename(columns={'index':'date','predicted_mean':'price'})
-   prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
+   #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
    st.write(result)
    data2 =pd.read_csv(path)
