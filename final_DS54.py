@@ -69,7 +69,7 @@ if st.button("predict"):
    #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
    st.write(result.astype('object'))
-   result1 = json.dumps(result, default = 'str')
+   result1 = json.dumps(result, default = str)
    
    data2 =pd.read_csv(path)
    from plotly import graph_objs as go
