@@ -17,6 +17,7 @@ import streamlit as st
 import statsmodels.graphics.tsaplots as tsa_plots
 from statsmodels.tsa.arima.model import ARIMA
 import os
+import json
 
 option = webdriver.ChromeOptions()
 
@@ -68,7 +69,8 @@ if st.button("predict"):
    #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
    st.write(result.astype('object'))
-   result1 = result.astype('object')
+   result1 = json.dumps(result, default = defaultconverter)
+   
    data2 =pd.read_csv(path)
    from plotly import graph_objs as go
    def plot_forecast_data():
