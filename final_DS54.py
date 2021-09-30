@@ -29,7 +29,7 @@ option.add_argument('--disable-gpu')
 option.add_argument('--no-sandbox')
 option.add_argument("--disable-dev-shm-usage")
 
-path="DATASET"
+path="complete.csv"
 
 st.header('POULTRY CHICKEN RATE FORECASTING FOR A WEEK')
 
