@@ -60,7 +60,7 @@ if st.button("predict"):
    model1 = ARIMA(data.Rates, order = (1,1,7))
    res1 = model1.fit()
    start_index = len(data)
-   end_index = start_index + 6
+   end_index = len(data) + 6
    forecast = res1.predict(start=start_index, end=end_index)
    prediction= forecast.to_frame()
    prediction.reset_index(level=0, inplace=True)# converting index to column
