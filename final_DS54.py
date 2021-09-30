@@ -55,7 +55,7 @@ if st.button("predict"):
    df.to_csv(path, index=False)
    data = pd.read_csv(path,index_col="Date",parse_dates=True)
    data.index = pd.DatetimeIndex(data.index).to_period('D')
-   #data = data.fillna(data.mean()) # replace NA values with mean value 
+   data = data.fillna(data.mean()) # replace NA values with mean value 
 
    model1 = ARIMA(data.Rates, order = (1,1,7))
    res1 = model1.fit()
@@ -68,7 +68,6 @@ if st.button("predict"):
    prediction = prediction.rename(columns={'index':'date','predicted_mean':'price'})
    #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
-   result1 = prediction
    st.write(result.astype('object'))
    
    
@@ -76,7 +75,7 @@ if st.button("predict"):
    from plotly import graph_objs as go
    def plot_forecast_data():
        fig = go.Figure()
-       fig.add_trace(go.Scatter(x=result1['date'], y=result1['price'], name="forecast"))
+       #fig.add_trace(go.Scatter(x=result1['date'], y=result1['price'], name="forecast"))
        fig.add_trace(go.Scatter(x=data2['Date'], y=data2['Rates'], name="actual_rates"))
        fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
        st.plotly_chart(fig)
