@@ -53,6 +53,7 @@ if st.button("predict"):
    df['Rates'].iloc[930]=139
    df.to_csv(path, index=False)
    data = pd.read_csv(path,index_col="Date",parse_dates=True)
+   data.index = pd.DatetimeIndex(data.index).to_period('D')
    #data = data.fillna(data.mean()) # replace NA values with mean value 
 
    model1 = ARIMA(data.Rates, order = (1,1,7))
