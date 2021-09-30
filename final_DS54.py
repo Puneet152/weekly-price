@@ -68,8 +68,9 @@ if st.button("predict"):
    prediction = prediction.rename(columns={'index':'date','predicted_mean':'price'})
    #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
+   result1 = prediction
    st.write(result.astype('object'))
-   result1 = json.dumps(result, default = str)
+   
    
    data2 =pd.read_csv(path)
    from plotly import graph_objs as go
