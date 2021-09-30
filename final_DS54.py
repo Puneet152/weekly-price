@@ -68,11 +68,12 @@ if st.button("predict"):
    #prediction['date']=prediction['date'].dt.strftime("%Y-%m-%d")
    result = prediction
    st.write(result.astype('object'))
+   result1 = result.astype('object')
    data2 =pd.read_csv(path)
    from plotly import graph_objs as go
    def plot_forecast_data():
        fig = go.Figure()
-       fig.add_trace(go.Scatter(x=result['date'], y=result['price'], name="forecast"))
+       fig.add_trace(go.Scatter(x=result1['date'], y=result1['price'], name="forecast"))
        fig.add_trace(go.Scatter(x=data2['Date'], y=data2['Rates'], name="actual_rates"))
        fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
        st.plotly_chart(fig)
