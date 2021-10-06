@@ -24,7 +24,7 @@ cur = con.cursor()
 def create_pandas_table(sql_query, database = con):
    table = pd.read_sql_query(sql_query, database)
    return table
-df = create_pandas_table("SELECT date, rates FROM hyderabad_rates")#Dataframe created
+df = create_pandas_table("SELECT date, rates FROM experiment")#Dataframe created
 cur.close()
 con.close()
 df.rates = pd.to_numeric(df.rates)
@@ -74,14 +74,14 @@ df['rates'].iloc[930]=139
 engine = create_engine('postgresql+psycopg2://xeveqgkrghuykv:1b7f39571777c39375024da50622985ee602139a1189246b7773fc8d38693ab9@ec2-3-218-47-9.compute-1.amazonaws.com:5432/dadi8p16nf8hu6')
 conn = engine.raw_connection()
 cur = conn.cursor()
-df.head(0).to_sql('hyderabad_rates', engine, if_exists='replace',index=False) #drops old table and creates new empty table
+df.head(0).to_sql('experiment', engine, if_exists='replace',index=False) #drops old table and creates new empty table
 conn = engine.raw_connection()
 cur = conn.cursor()
 output = io.StringIO()
 df.to_csv(output, sep='\t', header=False, index=False)
 output.seek(0)
 contents = output.getvalue()
-cur.copy_from(output, 'hyderabad_rates', null="") # null values become ''
+cur.copy_from(output, 'experiment', null="") # null values become ''
 conn.commit()
 cur.close()
 conn.close()
