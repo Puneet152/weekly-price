@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run final_DS54.py
+web: sh setup.sh && streamlit run Price_Prediction.py
